@@ -1,95 +1,18 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport"
-        content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-  <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <link rel="shortcut icon" href="data:image/svg+xml,%3Csvg viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath fill='%23cddc39' d='M19,11.5C19,11.5 17,13.67 17,15A2,2 0 0,0 19,17A2,2 0 0,0 21,15C21,13.67 19,11.5 19,11.5M5.21,10L10,5.21L14.79,10M16.56,8.94L7.62,0L6.21,1.41L8.59,3.79L3.44,8.94C2.85,9.5 2.85,10.47 3.44,11.06L8.94,16.56C9.23,16.85 9.62,17 10,17C10.38,17 10.77,16.85 11.06,16.56L16.56,11.06C17.15,10.47 17.15,9.5 16.56,8.94Z'/%3E%3C/svg%3E" type="image/svg+xml">
-  <title>ColorName</title>
+  <link rel="icon" href="/favicon.ico">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Color Name</title>
+  <link rel="shortcut icon"
+        href="data:image/svg+xml,%3Csvg viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath fill='%23cddc39' d='M19,11.5C19,11.5 17,13.67 17,15A2,2 0 0,0 19,17A2,2 0 0,0 21,15C21,13.67 19,11.5 19,11.5M5.21,10L10,5.21L14.79,10M16.56,8.94L7.62,0L6.21,1.41L8.59,3.79L3.44,8.94C2.85,9.5 2.85,10.47 3.44,11.06L8.94,16.56C9.23,16.85 9.62,17 10,17C10.38,17 10.77,16.85 11.06,16.56L16.56,11.06C17.15,10.47 17.15,9.5 16.56,8.94Z'/%3E%3C/svg%3E"
+        type="image/svg+xml">
   <meta name="description" content="ColorName - get color name from specific HEX">
-  <meta name="keywords" content="color, color-name, name that color, hex color, color hex, hex, DanRotaru">
-  <link rel="stylesheet" href="assets/style.css">
+  <meta name="keywords" content="color, color-name, name that color, hex color, color hex, hex">
 </head>
 <body>
-<main>
-  <input id="color" type="text" placeholder="Color HEX"/>
-  <div id="color-name">white</div>
-  <code class="result">
-            <span class="line" data-line="-1">
-                <i>#FFFFFF</i>
-            </span>
-    <span class="line" data-line="0">
-                <b>background:</b>
-                <i>#FFFFFF;</i>
-            </span>
-    <span class="line" data-line="1">
-                <b>color:</b>
-                <i>#FFFFFF;</i>
-            </span>
-    <span class="line" data-line="2">
-                <b>$white:</b>
-                <i>#FFFFFF;</i>
-            </span>
-    <span class="line" data-line="3">
-                <b>.c-white {<br></b>
-                <i> color: $white;<br>}</i>
-            </span>
-    <span class="line" data-line="4">
-                <b>.bg-white {<br></b>
-                <i> background-color: $white;<br>}</i>
-            </span>
-  </code>
-</main>
-<div class="color-name">white</div>
-<script src="assets/ntc.js"></script>
-<script>
-    const el = el => document.querySelector(el),
-        body = el("body"),
-        colorElement = el("#color"),
-        colorNameElement = el("#color-name"),
-        colorNameTextElement = el(".color-name"),
-        
-        lines = [
-            el('.result .line[data-line="-1"] i'),
-            el('.result .line[data-line="0"] i'),
-            el('.result .line[data-line="1"] i'),
-            el('.result .line[data-line="2"] i'),
-            el('.result .line[data-line="2"] b'),
-            el('.result .line[data-line="3"] i'),
-            el('.result .line[data-line="3"] b'),
-            el('.result .line[data-line="4"] i'),
-            el('.result .line[data-line="4"] b'),
-        ];
-    
-
-    colorElement.addEventListener("input", function () {
-        const color = ntc.name(this.value);
-        console.log(color);
-        let RGB = this.value[0] === "#" ? this.value : '#' + this.value.toUpperCase;
-        RGB = RGB.toUpperCase(RGB);
-        let name = color[1].replace(" ", "");
-        name = name.charAt(0).toLocaleLowerCase() + name.slice(1);
-        body.style.backgroundColor = RGB;
-
-        // If has upper case letter
-        (/[A-Z]/).test(name) ? colorNameTextElement.style.textTransform = 'none' : colorNameTextElement.style.textTransform = 'uppercase';
-
-        colorNameTextElement.style.color = RGB;
-        colorNameTextElement.innerText = name;
-        colorNameElement.innerText = name;
-        lines[0].innerText = RGB;
-        lines[1].innerText = RGB + ';';
-        lines[2].innerText = RGB + ';';
-        lines[3].innerText = RGB + ';';
-        lines[4].innerText = '$' + name + ': ';
-        lines[5].innerText = '\t\tcolor: $' + name + ';\n}';
-        lines[6].innerText = '.c-' + name + ' {\n\t';
-        lines[7].innerText = '\t\tbackground-color: $' + name + ';\n}';
-        lines[8].innerText = '.bg-' + name + ' {\n\t';
-    });
-    
-    colorElement.focus();
-</script>
+<div id="app"></div>
+<script type="module" src="/src/main.js"></script>
 </body>
 </html>
